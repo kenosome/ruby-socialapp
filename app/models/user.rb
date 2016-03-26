@@ -8,6 +8,10 @@ class User < ActiveRecord::Base
 	has_many :image_posts, dependent: :destroy
 	has_many :comments, dependent: :destroy
 
+	has_secure_password
+	validates :email, presence: true, uniqueness: true
+	validates :name, presence: true
+
 	def following?(leader)
 		leaders.include? leader
 	end
